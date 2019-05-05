@@ -1,9 +1,9 @@
 # FindDupes
 [![NuGet](https://img.shields.io/nuget/v/FindDupes.svg?style=flat-square&label=nuget)](https://www.nuget.org/packages/FindDupes/)
 
- A very fast and versatile file duplication finder.
+ A fast and versatile file duplication finder.
 
-Features:
+### Features
 - Uses file hash, size and timestamp (optional) as filtering criteria
 - Switch between SHA1 and xxHash for hashing
 - Multi-threaded
