@@ -6,7 +6,20 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <PackAsTool>true</PackAsTool>
     <LangVersion>7.3</LangVersion>
+
+    <Copyright>Copyright © Ian Qvist 2019</Copyright>
+    <PackageProjectUrl>https://github.com/Genbox/FindDupes/</PackageProjectUrl>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/Genbox/FindDupes/</RepositoryUrl>
+    <Description>A file duplication finder</Description>
+    <Authors>Ian Qvist</Authors>
+    <PackageTags>dedupe</PackageTags>
+    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\LICENSE.txt" Pack="true" PackagePath="$(PackageLicenseFile)"/>
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="4.5.2" />
