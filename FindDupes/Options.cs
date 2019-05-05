@@ -1,4 +1,6 @@
-﻿using CommandLine;
+﻿using System.Collections.Generic;
+using CommandLine;
+using CommandLine.Text;
 
 namespace FindDupes
 {
@@ -48,5 +50,16 @@ namespace FindDupes
 
         [Value(0, MetaName = "Directory", Required = true, HelpText = "The directory to remove duplicates from.")]
         public string Directory { get; set; }
+
+        [Usage]
+        public static IEnumerable<Example> Examples
+        {
+            get
+            {
+                yield return new Example("Find all duplicates in a folder", new Options { Directory = @"C:\MyDirectory" });
+                yield return new Example("Skip empty files", new Options { Directory = @"C:\MyDirectory", MinSize = 1 });
+                yield return new Example("Delete all duplicate files automatically", new Options { Directory = @"C:\MyDirectory", RecurseSubdirectories = true, NoAsk = true });
+            }
+        }
     }
 }
