@@ -4,7 +4,7 @@
 using System;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-using FindDupes.Interfaces;
+using FindDupes.Abstracts;
 
 namespace FindDupes.Hash
 {
@@ -15,15 +15,6 @@ namespace FindDupes.Hash
         private const ulong PRIME64_3 = 1609587929392839161UL;
         private const ulong PRIME64_4 = 9650029242287828579UL;
         private const ulong PRIME64_5 = 2870177450012600261UL;
-
-        [StructLayout(LayoutKind.Sequential)]
-        private struct QuadUlong
-        {
-            public ulong v1;
-            public ulong v2;
-            public ulong v3;
-            public ulong v4;
-        }
 
         public ulong GetHash(in ReadOnlySpan<byte> buffer)
         {
@@ -59,15 +50,15 @@ namespace FindDupes.Hash
                 switch (remainingBytes.Length % sizeof(uint))
                 {
                     case 3:
-                        h64 = RotateLeft(h64 ^ remaining * PRIME64_5, 11) * PRIME64_1;
+                        h64 = RotateLeft(h64 ^ (remaining * PRIME64_5), 11) * PRIME64_1;
                         remaining = ref Unsafe.Add(ref remaining, 1);
                         goto case 2;
                     case 2:
-                        h64 = RotateLeft(h64 ^ remaining * PRIME64_5, 11) * PRIME64_1;
+                        h64 = RotateLeft(h64 ^ (remaining * PRIME64_5), 11) * PRIME64_1;
                         remaining = ref Unsafe.Add(ref remaining, 1);
                         goto case 1;
                     case 1:
-                        h64 = RotateLeft(h64 ^ remaining * PRIME64_5, 11) * PRIME64_1;
+                        h64 = RotateLeft(h64 ^ (remaining * PRIME64_5), 11) * PRIME64_1;
                         break;
                 }
 
@@ -115,7 +106,10 @@ namespace FindDupes.Hash
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private static ulong RotateLeft(ulong val, int bits) => (val << bits) | (val >> (64 - bits));
+        private static ulong RotateLeft(ulong val, int bits)
+        {
+            return (val << bits) | (val >> (64 - bits));
+        }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private static ulong MergeValues(ulong v1, ulong v2, ulong v3, ulong v4)
@@ -150,6 +144,15 @@ namespace FindDupes.Hash
 
             input = input.Slice(sliceLength);
             return result;
+        }
+
+        [StructLayout(LayoutKind.Sequential)]
+        private struct QuadUlong
+        {
+            public readonly ulong v1;
+            public readonly ulong v2;
+            public readonly ulong v3;
+            public readonly ulong v4;
         }
     }
 }

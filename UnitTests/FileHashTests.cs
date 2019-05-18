@@ -1,6 +1,6 @@
 using System.Text;
+using FindDupes.Abstracts;
 using FindDupes.Hash;
-using FindDupes.Interfaces;
 using Xunit;
 
 namespace UnitTests

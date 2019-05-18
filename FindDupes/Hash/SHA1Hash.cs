@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Security.Cryptography;
-using FindDupes.Interfaces;
+using FindDupes.Abstracts;
 
 namespace FindDupes.Hash
 {

@@ -6,10 +6,7 @@ namespace FindDupes
 {
     public class Options
     {
-        [Option("disable-size", Required = false, HelpText = "Do not use size as a criteria for comparing duplicates.")]
-        public bool DisableSize { get; set; }
-
-        [Option("enable-timestamp", Required = false, HelpText = "Use timestamp as a criteria for comparing duplicates.")]
+        [Option("enable-timestamp", Required = false, HelpText = "Use timestamps as a criteria for comparing duplicates.")]
         public bool EnableTimestamp { get; set; }
 
         [Option("disable-hash", Required = false, HelpText = "Do not use hash as a criteria for comparing duplicates.")]
@@ -30,9 +27,6 @@ namespace FindDupes
         [Option("no-ask", Required = false, HelpText = "Don't ask to delete files, just delete them.")]
         public bool NoAsk { get; set; }
 
-        [Option('t', "threads", Required = false, HelpText = "The number of threads to use. By default it uses all available cores.")]
-        public int ThreadCount { get; set; }
-
         [Option('p', "progress", Required = false, HelpText = "Show progress bar.")]
         public bool ShowProgress { get; set; }
 
@@ -44,9 +38,6 @@ namespace FindDupes
 
         [Option("dry", Required = false, HelpText = "Do a dry-run. Don't actually delete files.")]
         public bool DryRun { get; set; }
-
-        [Option("max-files", Default = 10, Required = false, HelpText = "Maximum number of files to keep in memory at once.")]
-        public int MaxInMemory { get; set; }
 
         [Value(0, MetaName = "Directory", Required = true, HelpText = "The directory to remove duplicates from.")]
         public string Directory { get; set; }

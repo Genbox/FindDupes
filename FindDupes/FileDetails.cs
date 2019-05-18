@@ -1,14 +1,9 @@
 ﻿using System;
 
-namespace FindDupes.Structs
+namespace FindDupes
 {
-    public struct FileDetails
+    public class FileDetails
     {
-        public string Filename { get; }
-        public long Size { get; }
-        public DateTimeOffset Timestamp { get; }
-        public ulong Hash { get; set; }
-
         public FileDetails(string filename, long size, DateTimeOffset timestamp, ulong hash = 0)
         {
             Filename = filename;
@@ -17,9 +12,14 @@ namespace FindDupes.Structs
             Hash = hash;
         }
 
+        public string Filename { get; }
+        public long Size { get; }
+        public DateTimeOffset Timestamp { get; }
+        public ulong Hash { get; set; }
+
         public override string ToString()
         {
-            return $"{Size}-{Timestamp}-{Hash}";
+            return $"{Filename} || {Size} || {Timestamp} || {Hash}";
         }
     }
 }

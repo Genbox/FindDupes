@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace FindDupes.Interfaces
+namespace FindDupes.Abstracts
 {
     public interface IFileHash
     {
